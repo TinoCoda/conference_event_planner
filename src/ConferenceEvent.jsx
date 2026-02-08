@@ -87,7 +87,7 @@ const ConferenceEvent = () => {
    
 
     const items = getItemsFromTotalCost();
-    
+
     const ItemsDisplay = ({ items }) => {
         console.log(items);
         return <>
@@ -123,6 +123,13 @@ const ConferenceEvent = () => {
             </div>
         </>
     };
+
+    const totalCosts = {
+        venue: venueTotalCost,
+        av: avTotalCost,
+        meals: mealsTotalCost,
+    };
+    
     const calculateTotalCost = (section) => {
         let totalCost = 0;
         if (section === "venue") {
@@ -309,7 +316,7 @@ const ConferenceEvent = () => {
                         </div>
                     ) : (
                         <div className="total_amount_detail">
-                            <TotalCost totalCosts={totalCosts} handleClick={handleToggleItems} ItemsDisplay={() => <ItemsDisplay items={items} />} />
+                            <TotalCost totalCosts={totalCosts} ItemsDisplay={() => <ItemsDisplay items={items} />} />
                         </div>
                     )
                 }
