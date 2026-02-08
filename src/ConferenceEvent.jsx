@@ -13,6 +13,7 @@ const ConferenceEvent = () => {
     const avItems=useSelector((state)=>state.av);
     const mealsItems=useSelector((state)=>state.meals);
 
+
     const dispatch = useDispatch();
     const remainingAuditoriumQuantity = 3 - venueItems.find(item => item.name === "Auditorium Hall (Capacity:200)").quantity;
 
@@ -33,7 +34,8 @@ const ConferenceEvent = () => {
         if (venueItems[index].quantity > 0) {
           dispatch(decrementQuantity(index));
         }
-      };
+    };
+
     const handleIncrementAvQuantity = (index) => {
         dispatch(incrementAvQuantity(index));
     };
@@ -124,12 +126,8 @@ const ConferenceEvent = () => {
         </>
     };
 
-    const totalCosts = {
-        venue: venueTotalCost,
-        av: avTotalCost,
-        meals: mealsTotalCost,
-    };
-    
+
+
     const calculateTotalCost = (section) => {
         let totalCost = 0;
         if (section === "venue") {
@@ -152,6 +150,12 @@ const ConferenceEvent = () => {
     const venueTotalCost = calculateTotalCost("venue");
     const avTotalCost = calculateTotalCost("av");
     const mealsTotalCost=calculateTotalCost("meals");
+
+    const totalCosts = {
+        venue: venueTotalCost,
+        av: avTotalCost,
+        meals: mealsTotalCost,
+    };
 
     const navigateToProducts = (idType) => {
         if (idType == '#venue' || idType == '#addons' || idType == '#meals') {
@@ -312,8 +316,8 @@ const ConferenceEvent = () => {
         <div className="total_cost">Total Cost: {mealsTotalCost} </div>
 
 
-                            </div>
-                        </div>
+            </div>
+            </div>
                     ) : (
                         <div className="total_amount_detail">
                             <TotalCost totalCosts={totalCosts} ItemsDisplay={() => <ItemsDisplay items={items} />} />
